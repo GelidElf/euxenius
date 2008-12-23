@@ -1,0 +1,13 @@
+//File options.txt
+//contains some options from euxenus
+
+//All options are expressed as parameter:value;
+//They are not case ses¡nsitive.
+//Possible paramenters: resultado
+
+Resultados:resultados.txt;
+RobotA:eve;
+RobotB:walle;
+template:template.java;
+storage:bestrobots;
+team:bcrobots;
