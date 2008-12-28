@@ -1,4 +1,5 @@
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -45,8 +46,12 @@ public class Launcher {
 		}
 		generationID++;
 	}
-	f.writeRobot(_templateReader,ga.get_robot(), new String ( _optionsReader.get_robotA() + ".java"));
-	f.writeRobot(_templateReader,ga.get_robot(), new String ( _optionsReader.get_robotB() + ".java"));
+	String location = new String("robots/" + _optionsReader.get_team() + "/");
+	File file = new File(location);
+	if (!file.exists())
+		file.mkdirs();
+	f.writeRobot(_templateReader,ga.get_robot(), new String (location  +  _optionsReader.get_robotA() + ".java"));
+	f.writeRobot(_templateReader,ga.get_robot(), new String (location  + _optionsReader.get_robotB() + ".java"));
 	}
 	
 }
