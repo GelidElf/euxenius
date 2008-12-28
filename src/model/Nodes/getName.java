@@ -3,7 +3,7 @@ package model.Nodes;
 public class getName extends Node {
 
 	public getName(){
-		super("getName();",0,"[]");
+		super("getName();\n",0,"[]");
 	}
 	
 }

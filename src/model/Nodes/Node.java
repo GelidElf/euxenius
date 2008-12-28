@@ -55,10 +55,21 @@ public class Node {
 		_depth = n._depth + 1;
 	}
 	
+/*	public String getTabs(int tab){
+		String s = "";
+		while (tab != 0){
+			s.concat("\t");
+			tab--;
+		}
+		return s;
+	}*/
+	
 	public String get_value (){
 		String s = new String();
 		String aux = new String(_value);
 		int lastPosition = 0;
+		int tab = 0;
+		
 		if (_numberOfChildren == 0){
 			s = aux;		
 		}else {
@@ -73,6 +84,14 @@ public class Node {
 			}
 			s = s.concat(aux.substring(0, aux.length()));
 		}
+/*		for(int i = 0; i < s.length(); i++){
+			if(s.charAt(i) == '{')
+				tab++;
+			if(s.charAt(i) == '}')
+				tab--;
+			if(s.charAt(i) == '\n')	
+				s = s.substring(0, i) + getTabs(tab) + s.substring(i+1, s.length());
+		}*/
 		return s;
 	}
 	

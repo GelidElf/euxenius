@@ -58,6 +58,7 @@ public class Solution {
 
 	public void set_bulletHit(Node hit) {
 		_bulletHit = hit;
+		System.out.println(this._bulletHit.get_value());
 	}
 
 	public Node get_hitByBullet() {
@@ -66,6 +67,7 @@ public class Solution {
 
 	public void set_hitByBullet(Node byBullet) {
 		_hitByBullet = byBullet;
+		System.out.println(this._hitByBullet.get_value());
 	}
 
 	public Node get_hitRobot() {
@@ -74,6 +76,7 @@ public class Solution {
 
 	public void set_hitRobot(Node robot) {
 		_hitRobot = robot;
+		System.out.println(this._hitRobot.get_value());
 	}
 
 	public Node get_hitWall() {
@@ -82,6 +85,7 @@ public class Solution {
 
 	public void set_hitWall(Node wall) {
 		_hitWall = wall;
+		System.out.println(this._hitWall.get_value());
 	}
 
 	public Node get_scannedRobot() {
@@ -90,6 +94,7 @@ public class Solution {
 
 	public void set_scannedRobot(Node robot) {
 		_scannedRobot = robot;
+		System.out.println(this._scannedRobot.get_value());
 	}
 
 	public int get_length() {

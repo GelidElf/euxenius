@@ -3,7 +3,7 @@ package model.Nodes;
 public class MultilineThenElse extends Node {
 
 	public MultilineThenElse(){
-		super("%%",2,"[16,23,29][16,23,29]");
+		super("%%",2,"[2,3,4,5,6,7,8,9,10,16,29][2,3,4,5,6,7,8,9,10,16,29]");
 	}
 	
 }
