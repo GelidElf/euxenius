@@ -17,7 +17,7 @@ public class Generator {
 	private int _depthLimit = 5;
 //	private int _length = 0;
 	
-	public Generator(String name, String team){
+	public Generator(String team, String name){
 		_robot = new Solution(team, name);
 	}
 	
