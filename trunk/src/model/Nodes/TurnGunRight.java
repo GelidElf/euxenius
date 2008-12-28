@@ -3,7 +3,7 @@ package model.Nodes;
 public class TurnGunRight extends Node {
 
 	public TurnGunRight(){
-		super("turnGunRight(%);",1,"[1]");
+		super("turnGunRight(%);\n",1,"[1]");
 	}
 	
 }

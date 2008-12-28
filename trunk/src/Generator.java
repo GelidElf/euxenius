@@ -24,22 +24,22 @@ public class Generator {
 	public void createRobot(){
 		//_length = 0;
 		_robot.set_run(generateRunTree());
-		System.out.println(1);
+		System.out.println("\n\n"+1+"\n\n");
 		//_length = 0;
 		_robot.set_bulletHit(generateBulletHitTree());
-		System.out.println(2);
+		System.out.println("\n\n"+2+"\n\n");
 		//_length = 0;
 		_robot.set_hitByBullet(generateHitByBulletTree());
-		System.out.println(3);
+		System.out.println("\n\n"+3+"\n\n");
 		//_length = 0;
 		_robot.set_hitRobot(generateHitRobot());
-		System.out.println(4);
+		System.out.println("\n\n"+4+"\n\n");
 		//_length = 0;
 		_robot.set_hitWall(generateHitWall());
-		System.out.println(5);
+		System.out.println("\n\n"+5+"\n\n");
 		//_length = 0;
 		_robot.set_scannedRobot(generateScannedRobot());
-		System.out.println(6);
+		System.out.println("\n\n"+6+"\n\n");
 		
 	}
 
@@ -92,7 +92,7 @@ public class Generator {
 		//try{
 		//If the node has children
 		if (parent.get_numberOfChildren() > 0){
-			//FOr each children will do...
+			//For each children we'll do...
 			for (int i = 0; i < parent.get_numberOfChildren(); i++){
 				//Copy the possible types into array 'types'
 				types = parent.get_childType(i);
@@ -117,8 +117,12 @@ public class Generator {
 				}
 				//Choose random position from array we're using and create child
 				if (aux){
-					pos = r.nextInt(numAux);
-					childAux = Catalogue.getNode(typesAux[pos]);
+					if(numAux != 0){
+						pos = r.nextInt(numAux);
+						childAux = Catalogue.getNode(typesAux[pos]);
+					}
+					else
+						childAux = Catalogue.getNode(8); //Returns node doNothing()
 				}
 				else{
 					pos = r.nextInt(numChild);	
