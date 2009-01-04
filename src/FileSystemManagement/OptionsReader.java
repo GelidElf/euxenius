@@ -1,3 +1,4 @@
+package FileSystemManagement;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -18,6 +19,8 @@ public class OptionsReader {
 	private String _team = null;
 	private String _templateFileName = null;
 	private String _bestStoragePath = null;
+	private String _offspring = null;
+	private String _generations = null;
 	
 	private HashMap<String, String> _options = null;
 	
@@ -42,6 +45,8 @@ public class OptionsReader {
 		_team = new String(_options.get("team"));
 		_templateFileName = new String(_options.get("template"));
 		_bestStoragePath = new String (_options.get("storage"));
+		_offspring = new String (_options.get("offspring"));
+		_generations = new String (_options.get("generations"));
 	}
 
 	private void readOptionsFile() {
@@ -116,6 +121,12 @@ public class OptionsReader {
 	
 	public String get_team(){
 		return _team;
+	}
+	public String get_offspring(){
+		return _offspring;
+	}
+	public int get_generations(){
+		return Integer.parseInt(_generations);
 	}
 	
 }

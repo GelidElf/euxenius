@@ -1,12 +1,12 @@
 package bcrobots;
 import robocode.*;
 import java.util.Random;
-//import java.awt.Color;
+import java.awt.Color;
 
 /**
- * eve - a robot by Euxenius
+ * walle - a robot by Euxenius
  */
-public class eve extends Robot
+public class walle extends Robot
 {
 
 		Random r = new Random(System.currentTimeMillis());
@@ -15,170 +15,119 @@ public class eve extends Robot
 		setColors(Color.red,Color.black,Color.white);
 		while(true){
 if (r.nextBoolean()){
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-turnGunRight(r.nextDouble());
-}else{
-turnGunLeft(r.nextDouble());
-turnGunRight(r.nextDouble());
-}
-}else{
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-getOthers();
-}else{
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}
-}else{
-getOthers();
-getOthers();
-turnGunRight(r.nextDouble());
-}
-}
-}else{
+turnRight(r.nextDouble());
 turnLeft(r.nextDouble());
-turnGunLeft(r.nextDouble());
+}else{
+turnRight(r.nextDouble());
+turnLeft(r.nextDouble());
 }
 		}
 	}
-/n	public void onBulletHit(BulletHitEvent e){
-if (r.nextBoolean()){
-getName();
-getHeading();
-turnGunRight(r.nextDouble());
-getName();
-}else{
-if (r.nextBoolean()){
+
+	public void onBulletHit(BulletHitEvent e){
 if (r.nextBoolean()){
 turnGunLeft(r.nextDouble());
+turnGunRight(r.nextDouble());
+}else{
 getHeading();
-getOthers();
-}else{
-turnLeft(r.nextDouble());
-getOthers();
-}
-}else{
-getName();
-getOthers();
-}
+doNothing();
 }
 	}
-/n	public void onHitByBullet(HitByBulletEvent e){
+
+	public void onHitByBullet(HitByBulletEvent e){
 if (r.nextBoolean()){
+if (r.nextBoolean()){
+if (r.nextBoolean()){
+doNothing();
+doNothing();
+}else{
+getHeading();
+e.getBearing();
+}
+doNothing();
+}else{
+turnRight(r.nextDouble());
+turnRight(r.nextDouble());
+}
+}else{
+turnGunLeft(r.nextDouble());
+if (r.nextBoolean()){
+e.getBearing();
 getOthers();
+}else{
+getHeading();
+e.getBearing();
+}
+turnGunRight(r.nextDouble());
+}
+	}
+
+	public void onHitRobot(HitRobotEvent e){
+if (r.nextBoolean()){
+if (r.nextBoolean()){
+if (r.nextBoolean()){
+getHeading();
+getOthers();
+getName();
+}else{
+if (r.nextBoolean()){
+e.getBearing();
+e.getBearing();
+}else{
+e.getBearing();
+getName();
+}}}else{
+turnGunRight(r.nextDouble());
 fire(r.nextDouble());
-}else{
+}}else{
 if (r.nextBoolean()){
 doNothing();
-getBearing();
-}else{
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}else{
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}
-}else{
-if (r.nextBoolean()){
-getHeading();
-doNothing();
-}else{
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}
-}
-}
-}
-	}
-/n	public void onHitRobot(HitRobotEvent e){
-if (r.nextBoolean()){
-ahead(r.nextDouble());
-turnLeft(r.nextDouble());
-}else{
 turnGunRight(r.nextDouble());
+}else{
+if (r.nextBoolean()){
 turnLeft(r.nextDouble());
-}	}
-/n	public void onHitWall(HitWallEvent e){
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-doNothing();
-}else{
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}
-}else{
-if (r.nextBoolean()){
-doNothing();
 getHeading();
 }else{
 if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}
-}
-}else{
-turnGunRight(r.nextDouble());
-getHeading();
-}
-}else{
-ahead(r.nextDouble());
-getHeading();
-getBearing();
-}
-	}
-/n	public void onScannedRobot(ScannedRobotEvent e){
 if (r.nextBoolean()){
-ahead(r.nextDouble());
+doNothing();
+}else{
+doNothing();
+}}else{
+getHeading();
+getHeading();
+}}}}	}
+
+	public void onHitWall(HitWallEvent e){
+if (r.nextBoolean()){
+turnGunLeft(r.nextDouble());
 turnGunLeft(r.nextDouble());
 }else{
 if (r.nextBoolean()){
+getHeading();
+turnGunLeft(r.nextDouble());
+}else{
+turnGunRight(r.nextDouble());
+doNothing();
+getOthers();
+}
+}
+	}
+
+	public void onScannedRobot(ScannedRobotEvent e){
+if (r.nextBoolean()){
+getName();
+turnRight(r.nextDouble());
+}else{
+turnLeft(r.nextDouble());
 if (r.nextBoolean()){
 turnRight(r.nextDouble());
-getName();
+getEnergy();
 }else{
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}else{
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}
-}
-}
-}else{
-getVelocity();
-getHeading();
+fire(r.nextDouble());
+turnGunRight(r.nextDouble());
 }
 }
 	}
-/n}
+
+}

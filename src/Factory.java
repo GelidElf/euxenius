@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.Vector;
 
+import FileSystemManagement.TemplateReader;
+
 import model.Solution;
 
 public class Factory {
@@ -18,12 +20,12 @@ public class Factory {
 		_templateR = new TemplateReader();
 	}
 	
-	public void writeRobot(TemplateReader _template, Solution robot, String _file){
+	public void writeRobot(TemplateReader _template, Solution robot){
 		FileOutputStream _fileOS = null;
 	    DataOutputStream _dataOS = null;
 	    BufferedWriter _bufW = null;
 		try{
-			_fileOS = new FileOutputStream(_file);
+			_fileOS = new FileOutputStream("./robots/" + robot.get_team() + "/" + robot.get_name()+".java");
 			_dataOS = new DataOutputStream(_fileOS);
 			_bufW = new BufferedWriter(new OutputStreamWriter(_dataOS));
 			
