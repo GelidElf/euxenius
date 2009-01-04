@@ -52,10 +52,6 @@ public class Launcher {
 			Solution robota2 = _generator.generateOffspring(robota);
 			Solution robotb2 = _generator.generateOffspring(robotb);
 	
-			String location = new String("robots/" + _optionsReader.get_team() + "/");
-			File file = new File(location);
-			if (!file.exists())
-				file.mkdirs();
 			f.writeRobot(_templateReader,robota);
 			f.writeRobot(_templateReader,robotb);
 			f.writeRobot(_templateReader,robota2);
@@ -84,15 +80,13 @@ public class Launcher {
 			_resultReader =  new ResultsReader(_optionsReader);
 			String robotID = new String(_optionsReader.get_team() + "." + _optionsReader.get_robotA());
 			if (_resultReader.getScore(robotID) < _resultReader.getScore(robotID + _optionsReader.get_offspring())){
-				String nameaux = robota.get_name();
 				robota = robota2;
-				robota.set_name(nameaux);
+				robota.set_name(_optionsReader.get_robotA());
 			}
 			robotID = _optionsReader.get_team() + "." + _optionsReader.get_robotA();
 			if (_resultReader.getScore(robotID) < _resultReader.getScore(robotID + _optionsReader.get_offspring())){
-				String nameaux = robotb.get_name();
 				robotb = robotb2;
-				robotb.set_name(nameaux);
+				robotb.set_name(_optionsReader.get_robotB());
 			}
 			generationID++;
 		}

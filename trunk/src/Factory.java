@@ -1,6 +1,7 @@
 
 import java.io.BufferedWriter;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,8 +25,12 @@ public class Factory {
 		FileOutputStream _fileOS = null;
 	    DataOutputStream _dataOS = null;
 	    BufferedWriter _bufW = null;
-		try{
-			_fileOS = new FileOutputStream("./robots/" + robot.get_team() + "/" + robot.get_name()+".java");
+		try{			
+			String location = new String("robots/" + robot.get_team() + "/");
+			File file = new File(location);
+			if (!file.exists())
+				file.mkdirs();
+			_fileOS = new FileOutputStream(location + robot.get_name() + ".java");
 			_dataOS = new DataOutputStream(_fileOS);
 			_bufW = new BufferedWriter(new OutputStreamWriter(_dataOS));
 			
