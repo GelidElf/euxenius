@@ -15,118 +15,160 @@ public class walle extends Robot
 		setColors(Color.red,Color.black,Color.white);
 		while(true){
 if (r.nextBoolean()){
-turnRight(r.nextDouble());
-turnLeft(r.nextDouble());
+turnGunLeft(r.nextDouble());
+turnGunLeft(r.nextDouble());
+getOthers();
 }else{
-turnRight(r.nextDouble());
-turnLeft(r.nextDouble());
+if (r.nextBoolean()){
+doNothing();
+if (r.nextBoolean()){
+doNothing();
+}else{
+doNothing();
+}
+}else{
+if (r.nextBoolean()){
+getHeading();
+getHeading();
+}else{
+if (r.nextBoolean()){
+doNothing();
+}else{
+doNothing();
+}
+}
+}
+if (r.nextBoolean()){
+if (r.nextBoolean()){
+if (r.nextBoolean()){
+doNothing();
+}else{
+doNothing();
+}
+}else{
+if (r.nextBoolean()){
+doNothing();
+}else{
+doNothing();
+}
+}
+}else{
+ahead(r.nextDouble());
+turnGunLeft(r.nextDouble());
+}
 }
 		}
 	}
 
 	public void onBulletHit(BulletHitEvent e){
 if (r.nextBoolean()){
-turnGunLeft(r.nextDouble());
-turnGunRight(r.nextDouble());
+if (r.nextBoolean()){
+fire(r.nextDouble());
+turnRight(r.nextDouble());
 }else{
-getHeading();
-doNothing();
+fire(r.nextDouble());
+ahead(r.nextDouble());
+}
+}else{
+turnGunRight(r.nextDouble());
+turnGunLeft(r.nextDouble());
 }
 	}
 
 	public void onHitByBullet(HitByBulletEvent e){
 if (r.nextBoolean()){
 if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-doNothing();
-}else{
-getHeading();
-e.getBearing();
-}
-doNothing();
-}else{
+turnLeft(r.nextDouble());
 turnRight(r.nextDouble());
-turnRight(r.nextDouble());
-}
 }else{
-turnGunLeft(r.nextDouble());
-if (r.nextBoolean()){
-e.getBearing();
-getOthers();
-}else{
-getHeading();
-e.getBearing();
+ahead(r.nextDouble());
+fire(r.nextDouble());
 }
-turnGunRight(r.nextDouble());
+fire(r.nextDouble());
+}else{
+getName();
+e.getBearing();
 }
 	}
 
 	public void onHitRobot(HitRobotEvent e){
 if (r.nextBoolean()){
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-getHeading();
-getOthers();
-getName();
-}else{
-if (r.nextBoolean()){
-e.getBearing();
-e.getBearing();
-}else{
-e.getBearing();
-getName();
-}}}else{
-turnGunRight(r.nextDouble());
+ahead(r.nextDouble());
 fire(r.nextDouble());
-}}else{
-if (r.nextBoolean()){
-doNothing();
-turnGunRight(r.nextDouble());
 }else{
 if (r.nextBoolean()){
 turnLeft(r.nextDouble());
-getHeading();
+getOthers();
 }else{
-if (r.nextBoolean()){
-if (r.nextBoolean()){
-doNothing();
-}else{
-doNothing();
-}}else{
-getHeading();
-getHeading();
-}}}}	}
+turnRight(r.nextDouble());
+turnLeft(r.nextDouble());
+}}	}
 
 	public void onHitWall(HitWallEvent e){
 if (r.nextBoolean()){
-turnGunLeft(r.nextDouble());
+getHeading();
+turnLeft(r.nextDouble());
+}else{
+if (r.nextBoolean()){
+fire(r.nextDouble());
 turnGunLeft(r.nextDouble());
 }else{
 if (r.nextBoolean()){
+if (r.nextBoolean()){
 getHeading();
-turnGunLeft(r.nextDouble());
+e.getBearing();
 }else{
-turnGunRight(r.nextDouble());
+if (r.nextBoolean()){
 doNothing();
-getOthers();
+}else{
+doNothing();
+}
+}
+}else{
+if (r.nextBoolean()){
+e.getBearing();
+getHeading();
+}else{
+getHeading();
+e.getBearing();
+}
+}
 }
 }
 	}
 
 	public void onScannedRobot(ScannedRobotEvent e){
 if (r.nextBoolean()){
-getName();
-turnRight(r.nextDouble());
-}else{
-turnLeft(r.nextDouble());
 if (r.nextBoolean()){
-turnRight(r.nextDouble());
+if (r.nextBoolean()){
 getEnergy();
+ahead(r.nextDouble());
+}else{
+turnGunRight(r.nextDouble());
+getHeading();
+}
 }else{
 fire(r.nextDouble());
-turnGunRight(r.nextDouble());
+getName();
 }
+}else{
+if (r.nextBoolean()){
+turnLeft(r.nextDouble());
+getVelocity();
+e.getDistance();
+}else{
+if (r.nextBoolean()){
+if (r.nextBoolean()){
+doNothing();
+}else{
+doNothing();
+}
+}else{
+e.getDistance();
+getEnergy();
+}
+}
+getEnergy();
 }
 	}
 
