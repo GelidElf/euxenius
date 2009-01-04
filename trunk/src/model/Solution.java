@@ -1,11 +1,12 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import model.Nodes.Node;
 
 
-public class Solution {
+public class Solution implements Serializable{
 
 	//Guarda los arboles de todos los métodos de una solucion especifica.
 	//Guarda la representacion (código) de los árboles

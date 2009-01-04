@@ -5,9 +5,11 @@
 //They are not case ses¡nsitive.
 //Possible paramenters: resultado
 
-Resultados:resultados.txt;
+Resultados:resultadoCombate.txt;
 RobotA:eve;
 RobotB:walle;
 template:template.java;
 storage:bestrobots;
 team:bcrobots;
+offspring:_offspring;
+generations:1;

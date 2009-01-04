@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.Vector;
 
+import FileSystemManagement.OptionsReader;
+
 import model.Solution;
 import model.Nodes.*;
 
@@ -10,39 +12,36 @@ public class Generator {
 
 	
 	private Catalogue _catalog = new Catalogue(); 
-	
-	private Solution _robot = null;
-	
+	private OptionsReader _optionsReader = null;
 	private Random r = new Random(System.currentTimeMillis());
 	private int _depthLimit = 5;
 //	private int _length = 0;
 	
-	public Generator(String team, String name){
-		_robot = new Solution(team, name);
+	public Generator(OptionsReader op){
+		_optionsReader = op;
 	}
 	
-	public void createRobot(){
+	public void createRobot(Solution robot){
 		//_length = 0;
-		_robot.set_run(generateRunTree());
-		System.out.println("\n\n"+1+"\n\n");
-		//_length = 0;
-		_robot.set_bulletHit(generateBulletHitTree());
-		System.out.println("\n\n"+2+"\n\n");
-		//_length = 0;
-		_robot.set_hitByBullet(generateHitByBulletTree());
-		System.out.println("\n\n"+3+"\n\n");
-		//_length = 0;
-		_robot.set_hitRobot(generateHitRobot());
-		System.out.println("\n\n"+4+"\n\n");
-		//_length = 0;
-		_robot.set_hitWall(generateHitWall());
-		System.out.println("\n\n"+5+"\n\n");
-		//_length = 0;
-		_robot.set_scannedRobot(generateScannedRobot());
-		System.out.println("\n\n"+6+"\n\n");
+		robot.set_run(generateRunTree());
+		robot.set_bulletHit(generateBulletHitTree());
+		robot.set_hitByBullet(generateHitByBulletTree());
+		robot.set_hitRobot(generateHitRobot());
+		robot.set_hitWall(generateHitWall());
+		robot.set_scannedRobot(generateScannedRobot());
 		
 	}
 
+	public Solution generateOffspring(Solution parent){
+		Solution offspring = new Solution(parent.get_team(),parent.get_name() + _optionsReader.get_offspring());
+		
+		
+		createRobot(offspring);
+		
+		
+		return offspring;
+	}
+	
 	private Node generateScannedRobot() {
 		Node n = new IfScannedRobot();
 		n.set_depth(0);
@@ -144,9 +143,5 @@ public class Generator {
 			System.out.println(parent.get_value());
 		}*/
 		return parent;
-	}
-	
-	public Solution get_robot(){
-		return _robot;
 	}
 }

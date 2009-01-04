@@ -1,7 +1,7 @@
 package [%$i56@];
 import robocode.*;
 import java.util.Random;
-//import java.awt.Color;
+import java.awt.Color;
 
 /**
  * [%&AV#] - a robot by Euxenius
