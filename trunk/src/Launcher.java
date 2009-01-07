@@ -1,16 +1,17 @@
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import model.Solution;
 
+import FileSystemManagement.ConfigurationManager;
 import FileSystemManagement.OptionsReader;
 import FileSystemManagement.ResultsReader;
+import FileSystemManagement.RobotStorage;
 import FileSystemManagement.TemplateReader;
 
 
@@ -19,7 +20,7 @@ import FileSystemManagement.TemplateReader;
  * @author GelidElf
  *
  */
-public class Launcher {
+public class Launcher{
 
 	
 	public static void main(String[] args) {
@@ -29,6 +30,8 @@ public class Launcher {
 		OptionsReader _optionsReader = new OptionsReader();
 		TemplateReader _templateReader = new TemplateReader();
 		ResultsReader _resultReader = null;
+		RobotStorage _robotStorage = new RobotStorage(_optionsReader);
+		
 		Runtime r = Runtime.getRuntime();
 		String _macSystemKey = new String ("mac");
 		String _windowsSystemKey = new String ("windows");
@@ -39,12 +42,24 @@ public class Launcher {
 		int generationID = 0;
 		Process p = null;
 
+		ConfigurationManager _configurationManager = new ConfigurationManager(_optionsReader);
+		_configurationManager.configureBattleFile();
+		_configurationManager.configureBatchWindowsFile();
+		
+		
 		Generator _generator = new Generator(_optionsReader);
 		
 		Solution robota = new Solution(_optionsReader.get_team(),_optionsReader.get_robotA());
-		_generator.createRobot(robota);
 		Solution robotb = new Solution(_optionsReader.get_team(),_optionsReader.get_robotB());
-		_generator.createRobot(robotb);
+		
+		if (_optionsReader.getGenerateNewRobots()){
+			_generator.createRobot(robota);
+			_generator.createRobot(robotb);
+		}else{
+			HashMap<String,HashMap<String,File>> _sol =_robotStorage.getSavedRobots();
+			robota = _robotStorage.restoreRobot(_sol.get(_optionsReader.get_team()).get(_optionsReader.get_robotA()));
+			robotb = _robotStorage.restoreRobot(_sol.get(_optionsReader.get_team()).get(_optionsReader.get_robotB()));
+		}
 		
 		
 		while (generationID <= generations){
@@ -60,20 +75,17 @@ public class Launcher {
 			try {
 				String osName = new String (System.getProperty("os.name"));
 				if (osName.toLowerCase().contains(_windowsSystemKey))
-					p = r.exec(".\\robocode.bat");
+					//p = r.exec("robocode.bat");
+					p = r.exec("cmd /c start /MIN robocode.bat");
 				if (osName.toLowerCase().contains(_macSystemKey))
 					p = r.exec("robocode.sh");
-				
-			      String line;
-			      BufferedReader input =
-			          new BufferedReader
-			            (new InputStreamReader(p.getInputStream()));
-			        while ((line = input.readLine()) != null) {
-			          System.out.println(line);
-			        }
+				/*
+				String line;
+				BufferedReader input = new BufferedReader (new InputStreamReader(p.getInputStream()));
+				while ((line = input.readLine()) != null) {
+			    	System.out.println(line);
+			    }*/
 			      
-				
-			
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -90,6 +102,10 @@ public class Launcher {
 			}
 			generationID++;
 		}
+		
+		_robotStorage.save(robota);
+		_robotStorage.save(robotb);
+		
 	}
 	
 }

@@ -5,4 +5,4 @@ robocode.battle.gunCoolingRate=0.1
 robocode.battleField.width=1000
 robocode.battleField.height=1000
 robocode.battle.rules.inactivityTime=450
-robocode.battle.selectedRobots=bcrobots.eve,bcrobots.walle,bcrobots.eve_offspring,bcrobots.walle_offspring
+robocode.battle.selectedRobots=bcrobots.eve,bcrobots.walle,bcrobots.eve_offspring,bcrobots.walle_offspring,sample.Corners,sample.Fire,sample.SittingDuck,sample.Walls

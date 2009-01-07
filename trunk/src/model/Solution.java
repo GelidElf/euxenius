@@ -11,6 +11,11 @@ public class Solution implements Serializable{
 	//Guarda los arboles de todos los métodos de una solucion especifica.
 	//Guarda la representacion (código) de los árboles
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7662953218550600666L;
+	
 	private String _team = null;
 	private String _name = null;
 	
@@ -50,7 +55,6 @@ public class Solution implements Serializable{
 
 	public void set_run(Node _run) {
 		this._run = _run;
-		System.out.println(this._run.get_value());
 	}
 
 	public Node get_bulletHit() {
@@ -59,7 +63,6 @@ public class Solution implements Serializable{
 
 	public void set_bulletHit(Node hit) {
 		_bulletHit = hit;
-		System.out.println(this._bulletHit.get_value());
 	}
 
 	public Node get_hitByBullet() {
@@ -68,7 +71,6 @@ public class Solution implements Serializable{
 
 	public void set_hitByBullet(Node byBullet) {
 		_hitByBullet = byBullet;
-		System.out.println(this._hitByBullet.get_value());
 	}
 
 	public Node get_hitRobot() {
@@ -77,7 +79,6 @@ public class Solution implements Serializable{
 
 	public void set_hitRobot(Node robot) {
 		_hitRobot = robot;
-		System.out.println(this._hitRobot.get_value());
 	}
 
 	public Node get_hitWall() {
@@ -86,7 +87,6 @@ public class Solution implements Serializable{
 
 	public void set_hitWall(Node wall) {
 		_hitWall = wall;
-		System.out.println(this._hitWall.get_value());
 	}
 
 	public Node get_scannedRobot() {
@@ -95,7 +95,6 @@ public class Solution implements Serializable{
 
 	public void set_scannedRobot(Node robot) {
 		_scannedRobot = robot;
-		System.out.println(this._scannedRobot.get_value());
 	}
 
 	public int get_length() {

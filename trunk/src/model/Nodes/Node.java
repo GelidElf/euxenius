@@ -1,8 +1,14 @@
 package model.Nodes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Node {
+public class Node implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3327417896088673391L;
 
 	public static String WILDCARD = new String ("%");
 	
