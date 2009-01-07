@@ -43,30 +43,30 @@ public class ResultsReader {
 	    try {
 	    	_fileIS = new FileInputStream(_resultsFile);
 
-	      // Here BufferedInputStream is added for fast reading.
-	      _dataIS = new DataInputStream(_fileIS);
-	      _bufR = new BufferedReader(new InputStreamReader(_dataIS));
+	    	// Here BufferedInputStream is added for fast reading.
+	    	_dataIS = new DataInputStream(_fileIS);
+	    	_bufR = new BufferedReader(new InputStreamReader(_dataIS));
 
-	      int position = 0;
-	      while ((aux = _bufR.readLine()) != null) {
-	    	  position++;
-	    	  if ((position > 2)&& !aux.equals("")){
-	    		  _resultAux.put(processID(aux), processScore(aux));
-	    	  }
-	      }
+			int position = 0;
+			while ((aux = _bufR.readLine()) != null) {
+				position++;
+				if ((position > 2)&& !aux.equals("")){
+					_resultAux.put(processID(aux), processScore(aux));
+				}
+			}
 
-	      // dispose all the resources after using them.
-	      _bufR.close();
-	      _dataIS.close();
-	      _fileIS.close();
+			// dispose all the resources after using them.
+			_bufR.close();
+			_dataIS.close();
+			_fileIS.close();
 
-	    } catch (FileNotFoundException e) {
-	      e.printStackTrace();
-	    } catch (IOException e) {
-	      e.printStackTrace();
-	    }
+    	} catch (FileNotFoundException e) {
+    		e.printStackTrace();
+    	} catch (IOException e) {
+    		e.printStackTrace();
+    	}
 		
-		return _resultAux;
+    	return _resultAux;
 	}
 
 	private String processID(String aux) {

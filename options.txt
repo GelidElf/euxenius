@@ -13,3 +13,8 @@ storage:bestrobots;
 team:bcrobots;
 offspring:_offspring;
 generations:1;
+battleFile:battle.battle;
+batchWindowsFile:robocode.bat;
+extraRobots:sample.Corners,sample.Fire,sample.SittingDuck,sample.Walls;
+robocodeHome:.\robocode;
+generateNewRobots:false;

@@ -21,6 +21,11 @@ public class OptionsReader {
 	private String _bestStoragePath = null;
 	private String _offspring = null;
 	private String _generations = null;
+	private String _extraRobots = null;
+	private String _battleFile = null;
+	private String _batchWindowsFile = null;
+	private String _robocodeHome = null;
+	private String _generateNewRobots = null;
 	
 	private HashMap<String, String> _options = null;
 	
@@ -47,6 +52,12 @@ public class OptionsReader {
 		_bestStoragePath = new String (_options.get("storage"));
 		_offspring = new String (_options.get("offspring"));
 		_generations = new String (_options.get("generations"));
+		_battleFile = new String (_options.get("battlefile"));
+		_batchWindowsFile = new String (_options.get("batchwindowsfile"));
+		_extraRobots = new String (_options.get("extrarobots"));
+		_robocodeHome = new String (_options.get("robocodehome"));
+		_generateNewRobots = new String (_options.get("generatenewrobots"));
+		
 	}
 
 	private void readOptionsFile() {
@@ -67,7 +78,7 @@ public class OptionsReader {
 			bufR = new BufferedReader(new InputStreamReader(dataIS));
 
 			// _dataIS.available() returns 0 if the file does not have more lines.
-			while (readElement(bufR.readLine()) != null) {
+			while (processElement(bufR.readLine()) != null) {
 			}
 			
 			// dispose all the resources after using them.
@@ -83,13 +94,13 @@ public class OptionsReader {
 		
 	}
 
-	private String readElement (String c){
+	private String processElement (String c){
 		if (c != null){
 			c.trim();
 			int pos =-1;
 			if (!c.startsWith("//") && c.endsWith(";") && c.contains(":")){
 				pos = c.indexOf(':');
-				_options.put(new String(c.substring(0, pos)).trim().toLowerCase(), new String(c.substring(pos+1, c.length()-1)).trim().toLowerCase());
+				_options.put(new String(c.substring(0, pos)).trim().toLowerCase(), new String(c.substring(pos+1, c.length()-1)).trim());
 			}
 		}
 		return c;
@@ -122,11 +133,32 @@ public class OptionsReader {
 	public String get_team(){
 		return _team;
 	}
+	
 	public String get_offspring(){
 		return _offspring;
 	}
+	
 	public int get_generations(){
 		return Integer.parseInt(_generations);
 	}
 	
+	public String get_extraRobots(){
+		return _extraRobots;
+	}
+
+	public String get_battleFile(){
+		return _battleFile;
+	}
+	
+	public String get_batchWindowsFile(){
+		return _batchWindowsFile;
+	}
+	
+	public String get_robocodeHome(){
+		return _robocodeHome;
+	}
+
+	public boolean getGenerateNewRobots() {
+		return Boolean.parseBoolean(_generateNewRobots);
+	}
 }
