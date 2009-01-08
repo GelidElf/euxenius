@@ -19,10 +19,7 @@ public class Node implements Serializable{
 	private String _childTypes = null;
 	private int _numberOfChildren = -1;
 	private int _depth = -1;
-	
-	public Node (){
-	}
-	
+
 	public Node (String v, int nChildren, String cType){
 		_value = v;
 		_numberOfChildren = nChildren;
@@ -36,7 +33,8 @@ public class Node implements Serializable{
 		_numberOfChildren = n._numberOfChildren;
 		_childTypes = n.get_childTypes().substring(0);
 		_childType = parseChildTypeString(_childTypes);
-		_children = Node.copy(n._children);
+		if (n._children != null)
+			_children = Node.copy(n._children);
 		_depth = n._depth;
 	}
 	
@@ -171,10 +169,4 @@ public class Node implements Serializable{
 	public int get_depth(){
 		return _depth;
 	}
-	
-	/*
-	public static Node clone(Node n){
-		Node n2 = new Node();
-	}
-	*/
 }

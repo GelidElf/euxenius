@@ -55,12 +55,14 @@ public class RobotStorage {
 			if (directory[i].isDirectory()){
 				robotFiles = new HashMap<String,File>();
 				teams = directory[i].listFiles();
-				for (int j = 0; j < teams.length; j++) {
-					nameEnd = teams[j].getName().indexOf(".");
-					robotName = teams[j].getName().substring(0, nameEnd);
-					robotFiles.put(robotName, teams[j]);
+				if (!directory[i].getName().startsWith(".")){
+					for (int j = 0; j < teams.length; j++) {
+						nameEnd = teams[j].getName().indexOf(".");
+						robotName = teams[j].getName().substring(0, nameEnd);
+						robotFiles.put(robotName, teams[j]);
+					}
+					savedRobots.put(directory[i].getName(), robotFiles);
 				}
-				savedRobots.put(directory[i].getName(), robotFiles);
 			}
 		}
 		return savedRobots;

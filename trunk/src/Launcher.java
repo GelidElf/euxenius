@@ -40,6 +40,7 @@ public class Launcher{
 		int generations = _optionsReader.get_generations();
 		
 		int generationID = 0;
+		Double probability = 0.3;
 		Process p = null;
 
 		ConfigurationManager _configurationManager = new ConfigurationManager(_optionsReader);
@@ -64,8 +65,8 @@ public class Launcher{
 		
 		while (generationID <= generations){
 
-			Solution robota2 = _generator.generateOffspring(robota);
-			Solution robotb2 = _generator.generateOffspring(robotb);
+			Solution robota2 = _generator.generateOffspring(robota,probability);
+			Solution robotb2 = _generator.generateOffspring(robotb,probability);
 	
 			f.writeRobot(_templateReader,robota);
 			f.writeRobot(_templateReader,robotb);
@@ -75,18 +76,20 @@ public class Launcher{
 			try {
 				String osName = new String (System.getProperty("os.name"));
 				if (osName.toLowerCase().contains(_windowsSystemKey))
-					//p = r.exec("robocode.bat");
-					p = r.exec("cmd /c start /MIN robocode.bat");
+					p = r.exec("robocode.bat");
+					//p = r.exec("cmd /c start /MIN robocode.bat");
 				if (osName.toLowerCase().contains(_macSystemKey))
 					p = r.exec("robocode.sh");
-				/*
+				
 				String line;
 				BufferedReader input = new BufferedReader (new InputStreamReader(p.getInputStream()));
 				while ((line = input.readLine()) != null) {
 			    	System.out.println(line);
-			    }*/
-			      
+			    }
+				p.waitFor();
 			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			} catch (InterruptedException e) {
 				System.out.println(e.getMessage());
 			}
 			_resultReader =  new ResultsReader(_optionsReader);
@@ -101,6 +104,10 @@ public class Launcher{
 				robotb.set_name(_optionsReader.get_robotB());
 			}
 			generationID++;
+			if (generationID%10 == 0)
+				probability = probability + 6/generations;
+			
+			System.out.println(generationID);
 		}
 		
 		_robotStorage.save(robota);

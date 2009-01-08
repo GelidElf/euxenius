@@ -21,6 +21,6 @@ mkdir %robocodeHome%\robots\%team%\
 xcopy .\robots\%team%\*.class %robocodeHome%\robots\%team%\
 
 cd %robocodeHome%\
-java -Xmx512M -Dsun.io.useCanonCaches=false -jar robocode.jar -battle .\..\%battle% -results %resultFile% -minimize
+java -Xmx512M -Dsun.io.useCanonCaches=false -jar robocode.jar -battle .\..\%battle% -results .\..\%resultFile% -nodisplay
 cd..
 exit
