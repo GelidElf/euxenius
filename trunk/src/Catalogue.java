@@ -11,7 +11,7 @@ public class Catalogue {
 	public static  Node getNode(int i){
 		switch (i){
 		case 1:
-			return new ConstantDouble();
+			return new ConstantDoubleDistance();
 		case 2:
 			return new MoveAhead();
 		case 3:
@@ -53,19 +53,19 @@ public class Catalogue {
 		case 21:
 			return new IfHitByBullet();
 		case 22:
-			return new Condition();
-		/*case 23:
-			return new SentenceThenElse();
+			return new BooleanValue();
+		case 23:
+			return new LessThanThenElse();
 		case 24:
-			return new SentenceScannedRobot();
+			return new LessThanScannedRobot();
 		case 25:
-			return new SentenceBulletHit();
+			return new LessThanBulletHit();
 		case 26: 
-			return new SentenceHitRobot();
+			return new LessThanHitRobot();
 		case 27:
-			return new SentenceHitWall();
+			return new LessThanHitWall();
 		case 28:
-			return new SentenceHitByBullet();*/
+			return new LessThanHitByBullet();
 		case 29:
 			return new MultilineThenElse();
 		case 30:
@@ -78,15 +78,19 @@ public class Catalogue {
 			return new MultilineHitWall();
 		case 34:
 			return new MultilineHitByBullet();
+		case 35:
+			return new ConstantDoubleDegrees();
+		case 36:
+			return new ConstantDoubleFirePower();
 		}
 		return null;
 	}
 	
 	public static boolean isTerminal(int nodeType){
-		return (((nodeType >= 8 ) && (nodeType <= 15)) || (nodeType == 1) || (nodeType == 22));
+		return (((nodeType >= 8 ) && (nodeType <= 15)) || (nodeType == 1) || (nodeType == 22)|| (nodeType == 35)|| (nodeType == 36));
 	}
 	
-	/*public static boolean isSentence(int nodeType){
+	/*public static boolean isLessThan(int nodeType){
 		return ((nodeType >= 23 ) && (nodeType <= 28));
 	}*/
 	

@@ -2,9 +2,9 @@ package model.Nodes;
 
 import java.util.Random;
 
-public class ConstantDouble extends Node {
+public class ConstantDoubleDistance extends Node {
 
-	public ConstantDouble(){
+	public ConstantDoubleDistance(){
 		super(new String (new Double(new Random().nextInt(100)).toString()),0,"[]");
 		
 	}

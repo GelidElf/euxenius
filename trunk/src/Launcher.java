@@ -52,14 +52,14 @@ public class Launcher{
 		
 		Solution robota = new Solution(_optionsReader.get_team(),_optionsReader.get_robotA());
 		Solution robotb = new Solution(_optionsReader.get_team(),_optionsReader.get_robotB());
-		
-		if (_optionsReader.getGenerateNewRobots()){
-			_generator.createRobot(robota);
-			_generator.createRobot(robotb);
-		}else{
-			HashMap<String,HashMap<String,File>> _sol =_robotStorage.getSavedRobots();
+
+		HashMap<String,HashMap<String,File>> _sol =_robotStorage.getSavedRobots();
+		if (!_optionsReader.getGenerateNewRobots() && !_sol.isEmpty()){
 			robota = _robotStorage.restoreRobot(_sol.get(_optionsReader.get_team()).get(_optionsReader.get_robotA()));
 			robotb = _robotStorage.restoreRobot(_sol.get(_optionsReader.get_team()).get(_optionsReader.get_robotB()));
+		}else{
+			_generator.createRobot(robota);
+			_generator.createRobot(robotb);
 		}
 		
 		

@@ -34,7 +34,7 @@ public class Node implements Serializable{
 		_childTypes = n.get_childTypes().substring(0);
 		_childType = parseChildTypeString(_childTypes);
 		if (n._children != null)
-			_children = Node.copy(n._children);
+			_children = copyChildren(n._children);
 		_depth = n._depth;
 	}
 	
@@ -67,6 +67,10 @@ public class Node implements Serializable{
 		}
 		return s;
 	}*/
+	
+	public String get_name(){
+		return _value;
+	}
 	
 	public String get_value (){
 		String s = new String();
@@ -108,10 +112,11 @@ public class Node implements Serializable{
 		_childType = parseChildTypeString(_childTypes);
 	}
 	
-	public static Node[] copy (Node[] _n){
+	public Node[] copyChildren (Node[] _n){
 		Node[] result = new Node[_n.length];
 		for (int i = 0; i < _n.length; i++) {
 			result[i] = new Node(_n[i]);
+			result[i].set_father(this);
 		}
 		return result;
 	}

@@ -1,10 +1,9 @@
 Results for 1 round
 Robot Name	Total Score	Survival	Last Survivor Bonus	Bullet Dmg	Bonus	Ram Dmg * 2	Bonus	Survival 1sts	Survival 2nds	Survival 3rds	
-1st: sample.Walls	922	350	70	432	68	1	0	1	0	0	
-2nd: sample.Fire	550	300	0	218	32	0	0	0	1	0	
-3rd: bcrobots.eve	250	250	0	0	0	0	0	0	0	1	
-4th: bcrobots.eve_offspring	200	200	0	0	0	0	0	0	0	0	
-5th: sample.Corners	199	100	0	94	4	0	0	0	0	0	
-6th: sample.SittingDuck	150	150	0	0	0	0	0	0	0	0	
-7th: bcrobots.walle	57	50	0	7	0	0	0	0	0	0	
-8th: bcrobots.walle_offspring	0	0	0	0	0	0	0	0	0	0	
+1st: sample.Walls	914	300	60	463	88	1	0	1	0	0	
+2nd: bcrobots.walle	250	250	0	0	0	0	0	0	1	0	
+3rd: bcrobots.eve_offspring	200	200	0	0	0	0	0	0	0	1	
+5th: bcrobots.walle_offspring	150	150	0	0	0	0	0	0	0	0	
+5th: sample.Corners	150	50	0	84	16	0	0	0	0	0	
+6th: bcrobots.eve	100	100	0	0	0	0	0	0	0	0	
+7th: sample.SittingDuck	0	0	0	0	0	0	0	0	0	0	
