@@ -1,8 +1,8 @@
 package model.Nodes;
 
-public class Condition extends Node {
+public class BooleanValue extends Node {
 
-	public Condition(){
+	public BooleanValue(){
 		super("r.nextBoolean()",0,"[]");
 	}
 	

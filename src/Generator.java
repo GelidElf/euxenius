@@ -13,7 +13,7 @@ public class Generator {
 	private Catalogue _catalog = new Catalogue(); 
 	private OptionsReader _optionsReader = null;
 	private Random r = new Random(System.currentTimeMillis());
-	private int _depthLimit = 20;
+	private int _depthLimit = 10;
 	
 	public Generator(OptionsReader op){
 		_optionsReader = op;
@@ -73,6 +73,54 @@ public class Generator {
 		}
 	}
 	
+	private int getChildIndex(Node parent, Node child){
+		for (int i = 0; i < parent.get_numberOfChildren(); i++) {
+			if (parent.get_children()[i]==child){
+				return i;
+			}
+		}
+		return -1;
+	}
+	/*
+	private int[] getPossibleChildren(Node parent){
+		int[] types = null;
+		int numChild = 0;
+		boolean aux = false;
+		int numAux = 0;
+		int[] typesAux = null;
+		int posAux = 0;
+		int pos = 0;
+		Node childAux = null;
+		types = parent.get_childType(i);
+		//Store number of types available for this children
+		numChild = parent.get_childType(i).length;
+		//If we're reaching maximum depth...
+		if(parent.get_depth() == (_depthLimit-1)){
+			aux = true; //We'll use an auxiliary array for types
+			//Count number of terminal available from types
+			for(int j = 0; j < types.length; j++)
+				if(Catalogue.isTerminal(types[j]))
+					numAux++;
+			//Define dimension for auxiliary types array
+			typesAux = new int[numAux];
+			//Copy terminals from array 'types'
+			for(int j = 0; posAux < numAux; j++){
+				if(Catalogue.isTerminal(types[j])){
+					typesAux[posAux] = types[j];
+					posAux++;
+				}
+			}
+		}
+		//Choose random position from array we're using and create child
+		if (aux){
+				return (typesAux);
+		}
+		else{
+			return(types);
+		}
+	}
+	*/
+	
 	private Node mutateNode (Node n){
 		Node parent = n.get_father();
 		int[] types = null;
@@ -83,47 +131,47 @@ public class Generator {
 		int posAux = 0;
 		int pos = 0;
 		Node childAux = null;
-		for (int i = 0; i < parent.get_numberOfChildren(); i++) {
-			if (parent.get_children()[i]==n){
-				types = parent.get_childType(i);
-				//Store number of types available for this children
-				numChild = parent.get_childType(i).length;
-				//If we're reaching maximum depth...
-				if(parent.get_depth() == (_depthLimit-1)){
-					aux = true; //We'll use an auxiliary array for types
-					//Count number of terminal available from types
-					for(int j = 0; j < types.length; j++)
-						if(Catalogue.isTerminal(types[j]))
-							numAux++;
-					//Define dimension for auxiliary types array
-					typesAux = new int[numAux];
-					//Copy terminals from array 'types'
-					for(int j = 0; posAux < numAux; j++){
-						if(Catalogue.isTerminal(types[j])){
-							typesAux[posAux] = types[j];
-							posAux++;
-						}
-					}
+		int i = getChildIndex(parent, n);
+		types = parent.get_childType(i);
+		//Store number of types available for this children
+		numChild = parent.get_childType(i).length;
+		//If we're reaching maximum depth...
+		if(parent.get_depth() == (_depthLimit-1)){
+			aux = true; //We'll use an auxiliary array for types
+			//Count number of terminal available from types
+			for(int j = 0; j < types.length; j++)
+				if(Catalogue.isTerminal(types[j]))
+					numAux++;
+			//Define dimension for auxiliary types array
+			typesAux = new int[numAux];
+			//Copy terminals from array 'types'
+			for(int j = 0; posAux < numAux; j++){
+				if(Catalogue.isTerminal(types[j])){
+					typesAux[posAux] = types[j];
+					posAux++;
 				}
-				//Choose random position from array we're using and create child
-				if (aux){
-					if(numAux != 0){
-						pos = r.nextInt(numAux);
-						childAux = Catalogue.getNode(typesAux[pos]);
-					}
-					else
-						childAux = Catalogue.getNode(8); //Returns node doNothing()
-				}
-				else{
-					pos = r.nextInt(numChild);	
-					childAux = Catalogue.getNode(types[pos]);
-				}
-
-				childAux.set_depth(parent.get_depth()+1);
-				childAux = generateNode(childAux);
-				childAux.set_father(parent);
 			}
 		}
+		//Choose random position from array we're using and create child
+		if (aux){
+			if(numAux != 0){
+				pos = r.nextInt(numAux);
+				childAux = Catalogue.getNode(typesAux[pos]);
+			}
+			else{
+				if ((parent.get_value().contains("if ("))&&(i == 0))
+					childAux = Catalogue.getNode(22);
+				else
+					childAux = Catalogue.getNode(8); //Returns node doNothing()´
+			}
+		}
+		else{
+			pos = r.nextInt(numChild);	
+			childAux = Catalogue.getNode(types[pos]);
+		}
+
+		childAux.set_father(parent);
+		childAux = generateNode(childAux);
 		return childAux;
 	}
 	
@@ -205,16 +253,19 @@ public class Generator {
 						pos = r.nextInt(numAux);
 						childAux = Catalogue.getNode(typesAux[pos]);
 					}
-					else
-						childAux = Catalogue.getNode(8); //Returns node doNothing()
+					else{
+						if ((parent.get_name().contains("if ("))&&(i == 0))
+							childAux = Catalogue.getNode(22);
+						else
+							childAux = Catalogue.getNode(8); //Returns node doNothing()´
+					}
 				}
 				else{
 					pos = r.nextInt(numChild);	
 					childAux = Catalogue.getNode(types[pos]);
 				}
-				childAux.set_depth(parent.get_depth()+1);
+				childAux.set_father(parent);
 				children[i] = generateNode(childAux);
-				children[i].set_father(parent);
 				//System.out.println(parent.get_depth()+". "+parent.get_value()+"\n");
 				//Reset variables
 				aux = false;	

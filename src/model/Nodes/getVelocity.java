@@ -3,7 +3,7 @@ package model.Nodes;
 public class getVelocity extends Node {
 
 	public getVelocity(){
-		super("getVelocity();\n",0,"[]");
+		super("getVelocity()",0,"[]");
 	}
 	
 }
