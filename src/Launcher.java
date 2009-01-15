@@ -62,8 +62,12 @@ public class Launcher{
 			_generator.createRobot(robotb);
 		}
 		
+		int rbaBest = 0;
+		int rbbBest = 0;
 		
 		while (generationID <= generations){
+			
+			System.out.println("\nGeneration: " + generationID + "\n");
 
 			Solution robota2 = _generator.generateOffspring(robota,probability);
 			Solution robotb2 = _generator.generateOffspring(robotb,probability);
@@ -73,41 +77,52 @@ public class Launcher{
 			f.writeRobot(_templateReader,robota2);
 			f.writeRobot(_templateReader,robotb2);
 			
-			try {
-				String osName = new String (System.getProperty("os.name"));
-				if (osName.toLowerCase().contains(_windowsSystemKey))
-					p = r.exec("robocode.bat");
-					//p = r.exec("cmd /c start /MIN robocode.bat");
-				if (osName.toLowerCase().contains(_macSystemKey))
-					p = r.exec("robocode.sh");
-				
-				String line;
-				BufferedReader input = new BufferedReader (new InputStreamReader(p.getInputStream()));
-				while ((line = input.readLine()) != null) {
-			    	System.out.println(line);
-			    }
-				p.waitFor();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			} catch (InterruptedException e) {
-				System.out.println(e.getMessage());
+			
+			for (int t = 0; t < 5; t++){
+				try {
+					String osName = new String (System.getProperty("os.name"));
+					if (osName.toLowerCase().contains(_windowsSystemKey))
+						p = r.exec("robocode.bat");
+						//p = r.exec("cmd /c start /MIN robocode.bat");
+					if (osName.toLowerCase().contains(_macSystemKey))
+						p = r.exec("robocode.sh");
+					
+					String line;
+					BufferedReader input = new BufferedReader (new InputStreamReader(p.getInputStream()));
+					while ((line = input.readLine()) != null) {
+				    	System.out.println(line);
+				    }
+					p.waitFor();
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				} catch (InterruptedException e) {
+					System.out.println(e.getMessage());
+				}
+
+				_resultReader =  new ResultsReader(_optionsReader);
+				String robotID = new String(_optionsReader.get_team() + "." + _optionsReader.get_robotA());
+				if (_resultReader.getScore(robotID) < _resultReader.getScore(robotID + _optionsReader.get_offspring())){
+					rbaBest++;
+				}
+				robotID = _optionsReader.get_team() + "." + _optionsReader.get_robotA();
+				if (_resultReader.getScore(robotID) < _resultReader.getScore(robotID + _optionsReader.get_offspring())){
+					rbbBest++;
+				}
 			}
-			_resultReader =  new ResultsReader(_optionsReader);
-			String robotID = new String(_optionsReader.get_team() + "." + _optionsReader.get_robotA());
-			if (_resultReader.getScore(robotID) < _resultReader.getScore(robotID + _optionsReader.get_offspring())){
+			if (rbaBest>2){
 				robota = robota2;
 				robota.set_name(_optionsReader.get_robotA());
 			}
-			robotID = _optionsReader.get_team() + "." + _optionsReader.get_robotA();
-			if (_resultReader.getScore(robotID) < _resultReader.getScore(robotID + _optionsReader.get_offspring())){
+			if (rbbBest>2){
 				robotb = robotb2;
 				robotb.set_name(_optionsReader.get_robotB());
 			}
+			
+			rbaBest = 0;
+			rbbBest = 0;
 			generationID++;
 			if (generationID%10 == 0)
 				probability = probability + 6/generations;
-			
-			System.out.println(generationID);
 		}
 		
 		_robotStorage.save(robota);
